@@ -53,6 +53,11 @@ const HotelSchema = mongoose.Schema({
         required: false
     },
 
+    has_checked_out:{
+        type: Boolean,
+        required: false
+    },
+
     created_at:{
         type: Date,
         default: Date.now

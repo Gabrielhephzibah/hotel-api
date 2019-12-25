@@ -3,7 +3,7 @@ const router = express.Router();
 const Hotel = require('../../models/Hotel');
 
 router.get('/', (req, res, next) => {
-    Hotel.find()
+    Hotel.find({check_out_time: null})
     .then((posts) => {
         res.json(posts);
     }) 
@@ -31,7 +31,6 @@ router.get('/', (req, res, next) => {
         const room_number = req.body.room_number;
         const room_type = req.body.room_type;
         const purpose_for_stay = req.body.purpose_for_stay;
-        const final_bill = req.body.final_bill;
         newHotel = new Hotel({
             first_name: first_name,
            last_name: last_name,
@@ -39,7 +38,7 @@ router.get('/', (req, res, next) => {
             room_number: room_number,
             room_type: room_type,
             purpose_for_stay: purpose_for_stay,
-            final_bill: final_bill
+           
 
         });
        newHotel.save()
@@ -56,7 +55,6 @@ router.get('/', (req, res, next) => {
         //to find account by id
         Hotel.findById(id)
         .then(hotel => {
-            hotel.check_in_time= req.body.check_in_time;
             hotel.check_out_time = req.body.check_out_time;
             hotel.final_bill = req.body.final_bill;
             
